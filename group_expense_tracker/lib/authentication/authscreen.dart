@@ -105,7 +105,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      _isLogin = !_isLogin;
+                      setState(() {
+                        _isLogin = !_isLogin;
+                      });
+                      
                     },
                     child: Text(
                       _isLogin
