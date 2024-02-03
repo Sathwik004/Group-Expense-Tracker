@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_expense_tracker/authentication/authscreen.dart';
+import 'package:group_expense_tracker/bloc/tracker_bloc.dart';
 import 'package:group_expense_tracker/home_page.dart/home.dart';
 import 'package:group_expense_tracker/themedata.dart';
 import 'firebase_options.dart';
@@ -26,8 +27,12 @@ class MyApp extends StatelessWidget {
       theme: myTheme,
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) =>
-            snapshot.hasData ? const HomeScreen() : const AuthScreen(),
+        builder: (context, snapshot) => snapshot.hasData
+            ? BlocProvider(
+                create: (context) => TrackerBloc()..add(LoadExpense()),
+                child: const HomeScreen(),
+              )
+            : const AuthScreen(),
       ),
     );
   }
