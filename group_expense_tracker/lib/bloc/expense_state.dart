@@ -1,4 +1,4 @@
-part of 'tracker_bloc.dart';
+part of 'expense_bloc.dart';
 
 @immutable
 sealed class TrackerState {}
@@ -6,6 +6,6 @@ sealed class TrackerState {}
 final class TrackerInitial extends TrackerState {}
 
 class TrackerLoaded extends TrackerState{
-  final List<Object> expenses;
+  final List<Expense> expenses;
   TrackerLoaded({required this.expenses});
 }

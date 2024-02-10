@@ -1,4 +1,4 @@
-part of 'tracker_bloc.dart';
+part of 'expense_bloc.dart';
 
 @immutable
 sealed class TrackerEvent {}

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_expense_tracker/authentication/authscreen.dart';
-import 'package:group_expense_tracker/bloc/tracker_bloc.dart';
-import 'package:group_expense_tracker/home_page.dart/home.dart';
+import 'package:group_expense_tracker/bloc/expense_bloc.dart';
+import 'package:group_expense_tracker/bloc/groups_bloc.dart';
+import 'package:group_expense_tracker/home_page/home.dart';
+import 'package:group_expense_tracker/splash_screen.dart';
 import 'package:group_expense_tracker/themedata.dart';
 import 'firebase_options.dart';
 
@@ -27,12 +29,23 @@ class MyApp extends StatelessWidget {
       theme: myTheme,
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) => snapshot.hasData
-            ? BlocProvider(
-                create: (context) => TrackerBloc()..add(LoadExpense()),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting)
+          {
+            return const SplashScreen();
+          }
+          if(snapshot.hasData)
+          {
+            return BlocProvider(
+                create: (context) => GroupBloc()..add(LoadGroups()),
                 child: const HomeScreen(),
-              )
-            : const AuthScreen(),
+              );
+          }
+          else
+          {
+            return const AuthScreen();
+          }
+        }
       ),
     );
   }
