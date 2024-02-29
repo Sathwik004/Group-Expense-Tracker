@@ -7,7 +7,7 @@ final colorScheme = ColorScheme.fromSeed(
     onPrimary: const Color.fromARGB(215, 0, 0, 0),
     secondary: const Color(0xFF315953),
     onSecondary: const Color(0xFFFAFAFA),
-    onBackground: const Color(0xFF00120B),
-    background:const Color(0xFFD8E4FF),);
+    background: const Color(0xFF00120B),
+    onBackground:const Color(0xFFD8E4FF),);
 
 final myTheme = ThemeData.dark().copyWith(colorScheme: colorScheme,useMaterial3: true,textTheme: GoogleFonts.notoSansDisplayTextTheme());

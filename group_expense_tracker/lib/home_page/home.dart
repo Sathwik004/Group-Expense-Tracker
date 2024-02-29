@@ -29,18 +29,19 @@ class HomeScreen extends StatelessWidget {
                 ))
           ],
         ),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        //backgroundColor: Theme.of(context).colorScheme.background,
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(
+            FloatingActionButton(
                 onPressed: () => context.read<GroupBloc>().add(NewGroup(
                     group: Group(id: "01", title: "Samarthu", body: "chaddi"))),
-                icon: const Icon(Icons.add),),
-            IconButton(
+                child: const Icon(Icons.add),),
+                const SizedBox(height: 10,),
+            FloatingActionButton(
                 onPressed: () => context.read<GroupBloc>().add(DeleteGroup(
                     group: Group(id: "01", title: "Samarthu", body: "chaddi"))),
-                icon: const Icon(Icons.minimize))
+                child: const Icon(Icons.minimize))
           ],
         ),
         drawer: const MyDrawer(),
