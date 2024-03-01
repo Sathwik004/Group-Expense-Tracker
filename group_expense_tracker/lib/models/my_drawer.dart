@@ -16,16 +16,15 @@ class MyDrawer extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(
+                const Icon(
                   size: 40,
                   Icons.monetization_on,
-                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 const SizedBox(width: 10,),
                 Text(
                   'Tracker',
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ],
             ),

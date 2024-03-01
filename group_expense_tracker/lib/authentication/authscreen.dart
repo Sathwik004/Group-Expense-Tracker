@@ -41,11 +41,17 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle txtstyle =TextStyle(color: Theme.of(context).colorScheme.onPrimary);
     return Scaffold(
+      
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(30),
+          decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/background.jpg'),
+            fit: BoxFit.fill)
+          ),
           child: Form(
               key: _formkey,
               child: Column(
@@ -53,9 +59,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: const Text('Email'),
+                    child: Text('Email',style: txtstyle),
                   ),
                   TextFormField(
+                    style: txtstyle,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null ||
@@ -74,9 +81,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: const Text('Password'),
+                    child: Text('Password',style: txtstyle),
                   ),
                   TextFormField(
+                    style: txtstyle,
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.trim().length < 8) {
@@ -114,7 +122,6 @@ class _AuthScreenState extends State<AuthScreen> {
                       _isLogin
                           ? 'Don\'t have an Account? '
                           : 'Already have an Account?',
-                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                 ],

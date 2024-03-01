@@ -23,21 +23,39 @@ class GroupTile extends StatelessWidget {
         );
       },
       child: Card(
+        color: Theme.of(context).colorScheme.onSecondary,
         child: Row(
           children: [
-            group.image == null
-                ? const SizedBox(
-                    height: 50,
-                    width: 50,
-                  )
-                : Image.file(group.image!),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: group.image == null
+                  ? Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.background,
+                          borderRadius: BorderRadius.circular(10)),
+                    )
+                  : Image.file(group.image!),
+            ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   group.title,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.white, fontSize: 18),
                 ),
-                Text(group.body)
+                Text(
+                  'Your Balance ₹${group.balance}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white),
+                )
               ],
             )
           ],

@@ -14,22 +14,50 @@ class GroupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(
-            group.title,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+        toolbarHeight: 90,
+        leadingWidth: 30.0,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
+            children: [
+              Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                    image:
+                        null, //Add Image over here...............................
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Text(
+                group.title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+            ],
           ),
+        ),
       ),
-      body: BlocBuilder<TrackerBloc, TrackerState>(
-        builder: (context, state) {
-          return ListView.builder(
-            itemCount: expenses.length,
-            itemBuilder: (context, index) =>
-                ExpenseTile(expense: expenses[index]),
-          );
-        },
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/background.jpg'), fit: BoxFit.fill),
+        ),
+        child: BlocBuilder<TrackerBloc, TrackerState>(
+          builder: (context, state) {
+            
+            return state == TrackerInitial? const CircularProgressIndicator(): ListView.builder(
+              itemCount: expenses.length,
+              itemBuilder: (context, index) =>
+                  ExpenseTile(expense: expenses[index]),
+            );
+          },
+        ),
       ),
     );
   }

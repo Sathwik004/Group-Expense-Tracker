@@ -9,8 +9,9 @@ part 'groups_state.dart';
 class GroupBloc extends Bloc<GroupEvent, GroupState> {
   GroupBloc() : super(GroupInitial()) {
     on<LoadGroups>((event, emit) async {
-      await Future<void>.delayed(const Duration(seconds: 2));
       emit(GroupLoaded(groups: groups));
+      await Future<void>.delayed(const Duration(seconds: 2));
+      
     });
 
     on<NewGroup>((event, emit) {

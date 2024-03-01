@@ -9,8 +9,9 @@ part 'expense_state.dart';
 class TrackerBloc extends Bloc<TrackerEvent, TrackerState> {
   TrackerBloc() : super(TrackerInitial()) {
     on<LoadExpense>((event, emit) async {
-      await Future<void>.delayed(const Duration(seconds: 1));
       emit(TrackerLoaded(expenses: expenses));
+      await Future<void>.delayed(const Duration(seconds: 2));
+      
     });
 
     on<AddExpense>((event, emit) {

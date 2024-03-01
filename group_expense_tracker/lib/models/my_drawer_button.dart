@@ -16,14 +16,14 @@ class MyDrawerButton extends StatelessWidget {
         onPressed: onpressed,
         icon: Icon(
           iconData,
-          color: Theme.of(context).colorScheme.onSecondary,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
         label: Text(
           text,
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
-              .copyWith(color: Theme.of(context).colorScheme.onSecondary),
+              .copyWith(color: Theme.of(context).colorScheme.onPrimary),
         ),
       ),
     );

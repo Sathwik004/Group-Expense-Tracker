@@ -26,40 +26,51 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: const CircleAvatar(
                   radius: 20,
-                ))
+                ),)
           ],
         ),
-        //backgroundColor: Theme.of(context).colorScheme.background,
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
-                onPressed: () => context.read<GroupBloc>().add(NewGroup(
-                    group: Group(id: "01", title: "Samarthu", body: "chaddi"))),
-                child: const Icon(Icons.add),),
-                const SizedBox(height: 10,),
+            FloatingActionButton(//buttons are disabled go to groups_bloc.dart
+              onPressed: () => context.read<GroupBloc>().add(NewGroup(
+                  group: Group(id: "01", title: "Samarthu", balance: 100))),
+              child: const Icon(Icons.add),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             FloatingActionButton(
                 onPressed: () => context.read<GroupBloc>().add(DeleteGroup(
-                    group: Group(id: "01", title: "Samarthu", body: "chaddi"))),
+                    group: Group(id: "01", title: "Samarthu", balance: 100))),
                 child: const Icon(Icons.minimize))
           ],
         ),
+        
         drawer: const MyDrawer(),
         body: Center(
-          child: BlocBuilder<GroupBloc, GroupState>(
-            builder: (context, state) {
-              if (state is GroupInitial) {
-                return const CircularProgressIndicator();
-              }
-              if (state is GroupLoaded) {
-                return ListView.builder(
-                  itemCount: state.groups.length,
-                  itemBuilder: (context, index) =>
-                      GroupTile(group: state.groups[index]),
-                );
-              }
-              return const Text('Oops, something went wrong');
-            },
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/background.jpg'),
+                fit: BoxFit.fill
+              ),
+            ),
+            child: BlocBuilder<GroupBloc, GroupState>(
+              builder: (context, state) {
+                if (state is GroupInitial) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is GroupLoaded) {
+                  return ListView.builder(
+                    itemCount: state.groups.length,
+                    itemBuilder: (context, index) =>
+                        GroupTile(group: state.groups[index]),
+                  );
+                }
+                return const Text('Oops, something went wrong');
+              },
+            ),
           ),
         ));
   }
